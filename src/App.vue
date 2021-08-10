@@ -9,34 +9,21 @@
   <div class="menu">
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
-  <div>
-    <img src="./assets/room0.jpg" class="room-img" />
-    <h4 @click="isModalOpen = true">{{ products[0] }}</h4>
-    <p>{{ prices[0] }}만원</p>
-    <button v-on:click="increase(0)">허위매물신고</button>
-    <span>신고수 : {{ reportCount[0] }}</span>
-  </div>
-  <div>
-    <img src="./assets/room1.jpg" class="room-img" />
-    <h4>{{ products[1] }}</h4>
-    <p>{{ prices[1] }}만원</p>
-    <button @click="increase(1)">허위매물신고</button>
-    <span>신고수 : {{ reportCount[1] }}</span>
-  </div>
-  <div>
-    <img src="./assets/room2.jpg" class="room-img" />
-    <h4>{{ products[2] }}</h4>
-    <p>{{ prices[2] }}만원</p>
-    <button @click="increase(2)">허위매물신고</button>
-    <span>신고수 : {{ reportCount[2] }}</span>
+  <div v-for="room in rooms" :key="room">
+    <img :src="room.image" class="room-img" />
+    <h4>{{ room.title }}</h4>
+    <p>{{ room.price }}</p>
   </div>
 </template>
 
 <script>
+import rooms from "./assets/oneroom.js";
+
 export default {
   name: "App",
   data() {
     return {
+      rooms: rooms,
       isModalOpen: false,
       reportCount: [0, 0, 0],
       prices: [50, 60, 70],
